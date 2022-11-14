@@ -1,0 +1,13 @@
+{
+  "$id": "atl_assigneeEmail",
+  "$schema": "https://schema.yext.com/config/km/field/v1",
+  "displayName": "Assignee Email",
+  "group": "NONE",
+  "localization": "PRIMARY_ONLY",
+  "type": {
+    "stringType": {
+      "stereotype": "SIMPLE"
+    }
+  },
+  "typeId": "string"
+}

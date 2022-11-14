@@ -1,0 +1,69 @@
+{
+  "$id": "atl_jiraItem",
+  "$schema": "https://schema.yext.com/config/km/field-presentation/v1",
+  "entityType": "atl_jiraItem",
+  "displayName": "Jira Item",
+  "presentationEntries": [
+    {
+      "displayName": "Content",
+      "entryType": "DIVIDER"
+    },
+    {
+      "displayName": "Core Information",
+      "entryType": "SECTION",
+      "fields": [
+        {
+          "id": "name",
+          "visibleOnAdd": true
+        },
+        {
+          "id": "entityId",
+          "visibleOnAdd": true
+        },
+        {
+          "id": "body"
+        },
+        {
+          "id": "atl_reporterEmail"
+        },
+        {
+          "id": "atl_reporterName"
+        },
+        {
+          "id": "atl_engineeringTeam"
+        },
+        {
+          "id": "atl_assigneeName"
+        },
+        {
+          "id": "atl_assigneeEmail"
+        },
+        {
+          "id": "atl_status"
+        },
+        {
+          "id": "landingPageUrl"
+        },
+        {
+          "id": "atl_comments"
+        }
+      ]
+    },
+    {
+      "displayName": "Other",
+      "entryType": "DIVIDER"
+    },
+    {
+      "displayName": "Internal Use Only",
+      "entryType": "SECTION",
+      "fields": [
+        {
+          "id": "folder"
+        },
+        {
+          "id": "labels"
+        }
+      ]
+    }
+  ]
+}
