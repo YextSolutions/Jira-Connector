@@ -1,6 +1,6 @@
 # Product Description & Purpose
 
-Pull in your Jira Items/Issues with Yext's new Atlassian Jira Connector! Jira is an agile environment tool used by software companies around the world to manage project workflows. With the Atlassianconnector, you can pull in all of your Jira information into your Knowledge Graph to be used in the Yext Platform.
+Pull in your Jira Issues with Yext's new Atlassian Jira Connector! Jira is an agile environment tool used by software companies around the world to manage project workflows. With the Atlassianconnector, you can pull in all of your Jira information into your Knowledge Graph to be used in the Yext Platform.
 
 The Atlassian Jira connector will pull in data about your items/issues including, but not limited to: status, reporter name, report email, engineering team, comments, assignee name, assignee email, etc. Note: The connector is configured to run comprehensively on a daily cadence.
 
