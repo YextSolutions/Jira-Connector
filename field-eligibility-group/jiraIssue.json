@@ -1,0 +1,18 @@
+{
+  "$id": "atl_jiraIssue",
+  "$schema": "https://schema.yext.com/config/km/field-eligibility-group/v1",
+  "name": "Jira Item",
+  "entityType": "atl_jiraIssue",
+  "fields": [
+    "body",
+    "atl_assigneeEmail",
+    "atl_assigneeName",
+    "atl_engineeringTeam",
+    "atl_reporterEmail",
+    "atl_reporterName",
+    "atl_status",
+    "atl_comments",
+    "landingPageUrl"
+  ],
+  "required": []
+}

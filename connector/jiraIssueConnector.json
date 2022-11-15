@@ -1,0 +1,220 @@
+{
+  "$id": "jiraIssueConnector",
+  "$schema": "https://schema.yext.com/config/km/connector/v3",
+  "displayName": "Jira Issue Connector",
+  "entityType": "atl_jiraIssue",
+  "source": {
+    "sourceConfig": {
+      "nativeSourceConfig": {
+        "source": "atlassian",
+        "operation": "fetchIssues"
+        "inputs":{
+            "atlassianUsername": "${{atlassianUsername}}",
+            "atlassianPassword": "${{atlassianPassword}}",
+            "jqlParameter": "${{jqlParameter}}"
+        }
+      }
+    },
+    "selectors": [
+      {
+        "type": "JSON",
+        "header": "id",
+        "path": "id"
+      },
+      {
+        "type": "JSON",
+        "header": "Key",
+        "path": "key"
+      },
+      {
+        "type": "JSON",
+        "header": "Assignee Email",
+        "path": "fields.assignee.emailAddress"
+      },
+      {
+        "type": "JSON",
+        "header": "Assignee Name",
+        "path": "fields.assignee.displayName"
+      },
+      {
+        "type": "JSON",
+        "header": "Reporter Name",
+        "path": "fields.reporter.displayName"
+      },
+      {
+        "type": "JSON",
+        "header": "Reporter Email",
+        "path": "fields.reporter.emailAddress"
+      },
+      {
+        "type": "JSON",
+        "header": "Engineering Team",
+        "path": "fields.customfield_11800[].value"
+      },
+      {
+        "type": "JSON",
+        "header": "Status",
+        "path": "fields.status.statusCategory.name"
+      },
+      {
+        "type": "JSON",
+        "header": "Issue Summary",
+        "path": "fields.summary"
+      },
+      {
+        "type": "JSON",
+        "header": "Labels",
+        "path": "fields.labels"
+      },
+      {
+        "type": "JSON",
+        "header": "Commentor",
+        "path": "fields.comment"
+      },
+      {
+        "type": "JSON",
+        "header": "Commentor Email",
+        "path": "fields.comment"
+      },
+      {
+        "type": "JSON",
+        "header": "Comment",
+        "path": "fields.comment"
+      }
+    ]
+  },
+  "transforms": [
+    {
+      "addColumn": {
+        "newColumnHeader": "Atlassian Domain",
+        "columnValue": "${{domainName}}"
+      }
+    },
+    {
+      "mergeColumns": {
+        "inputHeaders": [
+          "Atlassian Domain",
+          "Key"
+        ],
+        "newColumnHeader": "Issue URL",
+        "delimiter": ""
+      }
+    },
+    {
+      "function": {
+        "inputHeaders": {
+          "headers": [
+            "Commentor"
+          ]
+        },
+        "plugin": "atl_comment_reformatter",
+        "function": "extractCommentor"
+      }
+    },
+    {
+      "function": {
+        "inputHeaders": {
+          "headers": [
+            "Commentor Email"
+          ]
+        },
+        "plugin": "atl_comment_reformatter",
+        "function": "extractEmail"
+      }
+    },
+    {
+      "function": {
+        "inputHeaders": {
+          "headers": [
+            "Comment"
+          ]
+        },
+        "plugin": "atl_comment_reformatter",
+        "function": "extractComment"
+      }
+    }
+  ],
+  "mappings": [
+    {
+      "field": "atl_status",
+      "header": "Status",
+      "subfieldPath": []
+    },
+    {
+      "field": "atl_engineeringTeam",
+      "header": "Engineering Team",
+      "subfieldPath": []
+    },
+    {
+      "field": "atl_reporterEmail",
+      "header": "Reporter Email",
+      "subfieldPath": []
+    },
+    {
+      "field": "atl_comments",
+      "header": "Comment",
+      "subfieldPath": [
+        {
+          "name": "comment"
+        }
+      ]
+    },
+    {
+      "field": "atl_assigneeName",
+      "header": "Assignee Name",
+      "subfieldPath": []
+    },
+    {
+      "field": "name",
+      "header": "Issue Summary",
+      "subfieldPath": []
+    },
+    {
+      "field": "atl_comments",
+      "header": "Commentor",
+      "subfieldPath": [
+        {
+          "name": "commentor"
+        }
+      ]
+    },
+    {
+      "field": "landingPageUrl",
+      "header": "Issue URL",
+      "subfieldPath": []
+    },
+    {
+      "field": "entityId",
+      "header": "id",
+      "subfieldPath": []
+    },
+    {
+      "field": "atl_reporterName",
+      "header": "Reporter Name",
+      "subfieldPath": []
+    },
+    {
+      "field": "atl_assigneeEmail",
+      "header": "Assignee Email",
+      "subfieldPath": []
+    },
+    {
+      "field": "atl_comments",
+      "header": "Commentor Email",
+      "subfieldPath": [
+        {
+          "name": "commentorEmail"
+        }
+      ]
+    }
+  ],
+  "scheduleConfig": {
+    "customSchedule": {
+      "timeZone": "Pacific/Easter",
+      "startDate": "2022-01-01",
+      "startTime": "23:00",
+      "frequencyType": "DAILY"
+    },
+    "runMode": "COMPREHENSIVE"
+  }
+}
