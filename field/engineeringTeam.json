@@ -1,5 +1,5 @@
 {
-  "$id": "atl_engineeringTeam",
+  "$id": "jira_engineeringTeam",
   "$schema": "https://schema.yext.com/config/km/field/v1",
   "displayName": "Engineering Team",
   "group": "NONE",
