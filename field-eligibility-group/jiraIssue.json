@@ -12,6 +12,7 @@
     "jira_reporterName",
     "jira_status",
     "jira_comments",
+    "jira_issueKey",
     "landingPageUrl"
   ],
   "required": []
