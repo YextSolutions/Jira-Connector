@@ -1,5 +1,5 @@
 {
-  "$id": "atl_reporterEmail",
+  "$id": "jira_reporterEmail",
   "$schema": "https://schema.yext.com/config/km/field/v1",
   "displayName": "Reporter Email",
   "group": "NONE",
