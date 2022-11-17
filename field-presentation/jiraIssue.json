@@ -42,10 +42,13 @@
           "id": "jira_status"
         },
         {
-          "id": "landingPageUrl"
+          "id": "jira_comments"
         },
         {
-          "id": "jira_comments"
+          "id": "jira_issueKey"
+        }
+        {
+          "id": "landingPageUrl"
         }
       ]
     },
