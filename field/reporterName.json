@@ -1,5 +1,5 @@
 {
-  "$id": "atl_reporterName",
+  "$id": "jira_reporterName",
   "$schema": "https://schema.yext.com/config/km/field/v1",
   "displayName": "Reporter Name",
   "group": "NONE",
