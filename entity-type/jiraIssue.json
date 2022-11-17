@@ -1,5 +1,5 @@
 {
-  "$id": "atl_jiraIssue",
+  "$id": "jira_Issue",
   "$schema": "https://schema.yext.com/config/km/entity-type/v2",
   "description": "",
   "displayName": "Jira Issue",
