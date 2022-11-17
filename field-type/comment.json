@@ -1,5 +1,5 @@
 {
-  "$id": "atl_Comment",
+  "$id": "jira_Comment",
   "$schema": "https://schema.yext.com/config/km/field-type/v1",
   "displayName": "Comment",
   "type": {
