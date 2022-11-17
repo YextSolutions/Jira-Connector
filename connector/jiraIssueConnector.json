@@ -136,6 +136,11 @@
   ],
   "mappings": [
     {
+      "field": "jira_issueKey",
+      "header": "Key",
+      "subfieldPath": []
+    },
+    {
       "field": "jira_status",
       "header": "Status",
       "subfieldPath": []
