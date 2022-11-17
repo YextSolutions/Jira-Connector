@@ -1,12 +1,12 @@
 {
-  "$id": "atl_comments",
+  "$id": "jira_comments",
   "$schema": "https://schema.yext.com/config/km/field/v1",
   "displayName": "Comments",
   "group": "NONE",
   "localization": "PRIMARY_ONLY",
   "type": {
     "listType": {
-      "typeId": "atl_Comment",
+      "typeId": "jira_Comment",
       "maxLength": 5000
     }
   },
