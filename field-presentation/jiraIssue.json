@@ -1,7 +1,7 @@
 {
-  "$id": "atl_jiraIssue",
+  "$id": "jira_Issue",
   "$schema": "https://schema.yext.com/config/km/field-presentation/v1",
-  "entityType": "atl_jiraIssue",
+  "entityType": "jira_Issue",
   "displayName": "Jira Issue",
   "presentationEntries": [
     {
@@ -24,28 +24,28 @@
           "id": "body"
         },
         {
-          "id": "atl_reporterEmail"
+          "id": "jira_reporterEmail"
         },
         {
-          "id": "atl_reporterName"
+          "id": "jira_reporterName"
         },
         {
-          "id": "atl_engineeringTeam"
+          "id": "jira_engineeringTeam"
         },
         {
-          "id": "atl_assigneeName"
+          "id": "jira_assigneeName"
         },
         {
-          "id": "atl_assigneeEmail"
+          "id": "jira_assigneeEmail"
         },
         {
-          "id": "atl_status"
+          "id": "jira_status"
         },
         {
           "id": "landingPageUrl"
         },
         {
-          "id": "atl_comments"
+          "id": "jira_comments"
         }
       ]
     },
