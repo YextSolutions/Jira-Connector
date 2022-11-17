@@ -18,13 +18,13 @@ This app aligns with new custom entity type called Jira Items and creates 7 cust
 
 To use this template you will need to have the following items accessible:
 
-- Atlassian Username (typically the email address verified on Atlassian)
+- Jira Username (typically the email address verified on Atlassian)
 - Atlassian API Key
-- Atlassian domain name
+- Jira domain name
 
 # Installation Instructions
 
 Before installing the app do the following :
-1. Log into your Atlassian account and note down your Atlassian domain name.
-2. (Still on Atlassian) Navigate to https://id.atlassian.com/manage-profile/security/api-tokens and click “Add Key”. Provide a unique name and click “Generate Key”.
-3. Copy down the API key value. This will serve as your Basic Auth password.
+1. Log into your Atlassian Jira account and note down your Jira domain name.
+2. (Still on Atlassian Jira) Navigate to https://id.atlassian.com/manage-profile/security/api-tokens and click “Add Key”. Provide a unique name and click “Generate Key”.
+3. Copy down the API key value. This will serve as your Basic Auth password. Note that you can use the same API Key for the Confluence connector.
