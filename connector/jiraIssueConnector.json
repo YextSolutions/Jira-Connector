@@ -1,16 +1,16 @@
 {
-  "$id": "jiraIssueConnector",
+  "$id": "jiraIssuesConnector",
   "$schema": "https://schema.yext.com/config/km/connector/v3",
-  "displayName": "Jira Issue Connector",
-  "entityType": "atl_jiraIssue",
+  "displayName": "Jira Issues Connector",
+  "entityType": "jira_Issue",
   "source": {
     "sourceConfig": {
       "nativeSourceConfig": {
-        "source": "atlassian",
+        "source": "jira",
         "operation": "fetchIssues"
         "inputs":{
-            "atlassianUsername": "${{atlassianUsername}}",
-            "atlassianPassword": "${{atlassianPassword}}",
+            "atlassianUsername": "${{username}}",
+            "atlassianPassword": "${{password}}",
             "jqlParameter": "${{jqlParameter}}"
         }
       }
@@ -86,14 +86,14 @@
   "transforms": [
     {
       "addColumn": {
-        "newColumnHeader": "Atlassian Domain",
-        "columnValue": "${{domainName}}"
+        "newColumnHeader": "Jira Domain",
+        "columnValue": "${{jiraDomainName}}"
       }
     },
     {
       "mergeColumns": {
         "inputHeaders": [
-          "Atlassian Domain",
+          "Jira Domain",
           "Key"
         ],
         "newColumnHeader": "Issue URL",
@@ -107,7 +107,7 @@
             "Commentor"
           ]
         },
-        "plugin": "atl_comment_reformatter",
+        "plugin": "jira_comment_reformatter",
         "function": "extractCommentor"
       }
     },
@@ -118,7 +118,7 @@
             "Commentor Email"
           ]
         },
-        "plugin": "atl_comment_reformatter",
+        "plugin": "jira_comment_reformatter",
         "function": "extractEmail"
       }
     },
@@ -129,29 +129,29 @@
             "Comment"
           ]
         },
-        "plugin": "atl_comment_reformatter",
+        "plugin": "jira_comment_reformatter",
         "function": "extractComment"
       }
     }
   ],
   "mappings": [
     {
-      "field": "atl_status",
+      "field": "jira_status",
       "header": "Status",
       "subfieldPath": []
     },
     {
-      "field": "atl_engineeringTeam",
+      "field": "jira_engineeringTeam",
       "header": "Engineering Team",
       "subfieldPath": []
     },
     {
-      "field": "atl_reporterEmail",
+      "field": "jira_reporterEmail",
       "header": "Reporter Email",
       "subfieldPath": []
     },
     {
-      "field": "atl_comments",
+      "field": "jira_comments",
       "header": "Comment",
       "subfieldPath": [
         {
@@ -160,7 +160,7 @@
       ]
     },
     {
-      "field": "atl_assigneeName",
+      "field": "jira_assigneeName",
       "header": "Assignee Name",
       "subfieldPath": []
     },
@@ -170,7 +170,7 @@
       "subfieldPath": []
     },
     {
-      "field": "atl_comments",
+      "field": "jira_comments",
       "header": "Commentor",
       "subfieldPath": [
         {
@@ -189,17 +189,17 @@
       "subfieldPath": []
     },
     {
-      "field": "atl_reporterName",
+      "field": "jira_reporterName",
       "header": "Reporter Name",
       "subfieldPath": []
     },
     {
-      "field": "atl_assigneeEmail",
+      "field": "jira_assigneeEmail",
       "header": "Assignee Email",
       "subfieldPath": []
     },
     {
-      "field": "atl_comments",
+      "field": "jira_comments",
       "header": "Commentor Email",
       "subfieldPath": [
         {
