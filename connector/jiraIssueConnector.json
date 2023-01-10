@@ -11,7 +11,8 @@
         "inputs":{
             "username": "${{username}}",
             "password": "${{password}}",
-            "jqlParameter": "${{jqlParameter}}"
+            "jql": "${{jql}}",
+            "fields": "${{fields}}"
         }
       }
     },
