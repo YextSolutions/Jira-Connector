@@ -1,5 +1,5 @@
 {
-  "$id": "jiraIssuesConnector",
+  "$id": "jira_jiraIssuesConnector",
   "$schema": "https://schema.yext.com/config/km/connector/v3",
   "displayName": "Jira Issues Connector",
   "entityType": "jira_Issue",
