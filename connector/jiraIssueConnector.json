@@ -12,7 +12,8 @@
             "username": "${{username}}",
             "password": "${{password}}",
             "jql": "${{jql}}",
-            "fields": "${{fields}}"
+            "fields": "${{fields}}",
+            "domainName" : "${{domainName}}"
         }
       }
     },
@@ -88,7 +89,7 @@
     {
       "addColumn": {
         "newColumnHeader": "Jira Domain",
-        "columnValue": "${{domainName}}"
+        "columnValue": "${{domainUrl}}"
       }
     },
     {
