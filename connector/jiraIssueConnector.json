@@ -7,7 +7,7 @@
     "sourceConfig": {
       "nativeSourceConfig": {
         "source": "jira",
-        "operation": "fetchIssues"
+        "operation": "fetchIssues",
         "inputs":{
             "username": "${{username}}",
             "password": "${{password}}",
