@@ -9,8 +9,8 @@
         "source": "jira",
         "operation": "fetchIssues"
         "inputs":{
-            "atlassianUsername": "${{username}}",
-            "atlassianPassword": "${{password}}",
+            "username": "${{username}}",
+            "password": "${{password}}",
             "jqlParameter": "${{jqlParameter}}"
         }
       }
