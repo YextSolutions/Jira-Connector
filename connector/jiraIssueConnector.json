@@ -104,7 +104,7 @@
             "Commentor"
           ]
         },
-        "plugin": "jira_comments",
+        "plugin": "jira_comment_formatter",
         "function": "extractCommentor"
       }
     },
@@ -115,8 +115,19 @@
             "Commentor Email"
           ]
         },
-        "plugin": "jira_comments",
+        "plugin": "jira_comment_formatter",
         "function": "extractEmail"
+      }
+    },
+    {
+      "function": {
+        "inputHeaders": {
+          "headers": [
+            "Comment"
+          ]
+        },
+        "plugin": "jira_comment_formatter",
+        "function": "extractComment"
       }
     }
   ],
