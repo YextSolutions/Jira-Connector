@@ -7,13 +7,13 @@
     "sourceConfig": {
       "nativeSourceConfig": {
         "source": "jira",
-        "operation": "fetchIssues",
-        "inputs":{
-            "username": "${{username}}",
-            "password": "${{password}}",
-            "jiraBoardId": "${{jiraBoardId}}",
-            "domainName" : "${{domainName}}",
-            "fields" : "id,key,assignee,reporter,status,labels,comment,summary"
+        "operation": "fetchIssuesSpecifyFields",
+        "inputs": {
+          "atlassianDomain": "${{atlassianDomain}}",
+          "boardId": "${{boardId}}",
+          "fields": "id,key,assignee,reporter,status,labels,comment,summary",
+          "password": "${{password}}",
+          "username": "${{username}}"
         }
       }
     },
@@ -25,7 +25,7 @@
       },
       {
         "type": "JSON",
-        "header": "Key",
+        "header": "key",
         "path": "key"
       },
       {
@@ -84,14 +84,14 @@
     {
       "addColumn": {
         "newColumnHeader": "Jira Domain",
-        "columnValue": "${{domainUrl}}"
+        "columnValue": "${{jiraDomain}}"
       }
     },
     {
       "mergeColumns": {
         "inputHeaders": [
           "Jira Domain",
-          "Key"
+          "key"
         ],
         "newColumnHeader": "Issue URL",
         "delimiter": ""
@@ -104,7 +104,7 @@
             "Commentor"
           ]
         },
-        "plugin": "jira_comment_formatter",
+        "plugin": "jira_comments",
         "function": "extractCommentor"
       }
     },
@@ -115,28 +115,12 @@
             "Commentor Email"
           ]
         },
-        "plugin": "jira_comment_formatter",
+        "plugin": "jira_comments",
         "function": "extractEmail"
-      }
-    },
-    {
-      "function": {
-        "inputHeaders": {
-          "headers": [
-            "Comment"
-          ]
-        },
-        "plugin": "jira_comment_formatter",
-        "function": "extractComment"
       }
     }
   ],
   "mappings": [
-    {
-      "field": "jira_issueKey",
-      "header": "Key",
-      "subfieldPath": []
-    },
     {
       "field": "jira_status",
       "header": "Status",
@@ -181,11 +165,6 @@
       "subfieldPath": []
     },
     {
-      "field": "entityId",
-      "header": "id",
-      "subfieldPath": []
-    },
-    {
       "field": "jira_reporterName",
       "header": "Reporter Name",
       "subfieldPath": []
@@ -193,6 +172,16 @@
     {
       "field": "jira_assigneeEmail",
       "header": "Assignee Email",
+      "subfieldPath": []
+    },
+    {
+      "field": "labels",
+      "header": "Labels",
+      "subfieldPath": []
+    },
+    {
+      "field": "entityId",
+      "header": "id",
       "subfieldPath": []
     },
     {
@@ -204,14 +193,5 @@
         }
       ]
     }
-  ],
-  "scheduleConfig": {
-    "customSchedule": {
-      "timeZone": "Pacific/Easter",
-      "startDate": "2022-01-01",
-      "startTime": "23:00",
-      "frequencyType": "DAILY"
-    },
-    "runMode": "COMPREHENSIVE"
-  }
+  ]
 }
