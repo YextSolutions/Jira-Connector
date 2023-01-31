@@ -50,11 +50,6 @@
       },
       {
         "type": "JSON",
-        "header": "Engineering Team",
-        "path": "fields.customfield_11800[].value"
-      },
-      {
-        "type": "JSON",
         "header": "Status",
         "path": "fields.status.statusCategory.name"
       },
@@ -145,11 +140,6 @@
     {
       "field": "jira_status",
       "header": "Status",
-      "subfieldPath": []
-    },
-    {
-      "field": "jira_engineeringTeam",
-      "header": "Engineering Team",
       "subfieldPath": []
     },
     {
