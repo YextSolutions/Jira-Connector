@@ -12,7 +12,8 @@
             "username": "${{username}}",
             "password": "${{password}}",
             "jiraBoardId": "${{jiraBoardId}}",
-            "domainName" : "${{domainName}}"
+            "domainName" : "${{domainName}}",
+            "fields" : "id,key,assignee,reporter,status,labels,comment,summary"
         }
       }
     },
