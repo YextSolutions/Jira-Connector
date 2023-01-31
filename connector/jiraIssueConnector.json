@@ -11,8 +11,7 @@
         "inputs":{
             "username": "${{username}}",
             "password": "${{password}}",
-            "jql": "${{jql}}",
-            "fields": "${{fields}}",
+            "jiraBoardId": "${{jiraBoardId}}",
             "domainName" : "${{domainName}}"
         }
       }
