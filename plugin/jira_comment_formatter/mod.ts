@@ -1,6 +1,5 @@
-// const comment_test = ''
-
 export function extractEmail (code:string) {
+
   const searcher = `"comments":`
   const indexOf = code.indexOf(searcher)
   const commentCleaned = code.slice(indexOf + searcher.length)
@@ -14,32 +13,32 @@ export function extractEmail (code:string) {
     return element !== undefined;
   });
 
-  return returnEmail.toString();
-}
+  return returnEmail.toString(); }
+
 
 export function extractCommentor (code:string) {
-  var commentorString = []
-  const searcher = `"comments":`
-  const indexOf = code.indexOf(searcher)
-  const commentCleaned = code.slice(indexOf + searcher.length)
-  const endSearcher = `maxResults`
-  const indexOfEnd = commentCleaned.indexOf(endSearcher)
-  const commentsFormattedFinal = commentCleaned.slice(0, ((indexOfEnd - 74) - commentCleaned.length));
-  const data = JSON.parse(commentsFormattedFinal);
-  var returnName = data.map((object) => (object.author.displayName));
-    for (let i in returnName) {
-        if(returnName[i] != `Automation for Jira`) {
-            var commentorName = returnName[i]
-        }
-        commentorString.push(commentorName)
-    }
-    
-    commentorString = commentorString.filter(element => {
-        return element !== undefined;
-      })
+    var commentorString = []
+    const searcher = `"comments":`
+    const indexOf = code.indexOf(searcher)
+    const commentCleaned = code.slice(indexOf + searcher.length)
+    const endSearcher = `maxResults`
+    const indexOfEnd = commentCleaned.indexOf(endSearcher)
+    const commentsFormattedFinal = commentCleaned.slice(0, ((indexOfEnd - 74) - commentCleaned.length));
+    const data = JSON.parse(commentsFormattedFinal);
+    var returnName = data.map((object) => (object.author.displayName));
+      for (let i in returnName) {
+          if(returnName[i] != `Automation for Jira`) {
+              var commentorName = returnName[i]
+          }
+          commentorString.push(commentorName)
+      }
       
-    return commentorString.toString()
-}
+      commentorString = commentorString.filter(element => {
+          return element !== undefined;
+        })
+        
+      return commentorString.toString()
+  }
 
 export function extractComment (code:string) {
 
@@ -51,9 +50,10 @@ export function extractComment (code:string) {
     const endSearcher = `maxResults`
     const indexOfEnd = commentCleaned.indexOf(endSearcher)
     const commentsFormattedFinal = commentCleaned.slice(0, ((indexOfEnd - 74) - commentCleaned.length));
-    const commentsFormattedFinalClean = commentsFormattedFinal.replace(/\s+/g, " ");
+    const commentsFormattedFinalClean = commentsFormattedFinal.replace(/\s\s+/g, " ");
     const commentsFormattedFinalCleanAgain = commentsFormattedFinalClean.replace(/\\!+/g, " ");
-    const data = JSON.parse(commentsFormattedFinalCleanAgain)
+    const commentsFormattedFinalCleanAgain2 = commentsFormattedFinalClean.replace(/\\@+/g, " ");
+    const data = JSON.parse(commentsFormattedFinalCleanAgain2)
       
     if(data.map((object) => (object.body.content))[0] != null){
         var firstLevel = data.map((object) => (object.body.content))
@@ -99,7 +99,4 @@ export function extractComment (code:string) {
       firstLevelString = firstLevel.toString()
       
       return firstLevelString;
-  
-  }
-
-  // console.log(extractComment(comment_test))
+    }
