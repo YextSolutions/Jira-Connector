@@ -84,7 +84,7 @@
     {
       "addColumn": {
         "newColumnHeader": "Jira Domain",
-        "columnValue": "${{jiraDomain}}/browse/"
+        "columnValue": "${{domainUrl}}/browse/"
       }
     },
     {
