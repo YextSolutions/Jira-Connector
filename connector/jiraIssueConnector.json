@@ -84,7 +84,7 @@
     {
       "addColumn": {
         "newColumnHeader": "Jira Domain",
-        "columnValue": "${{domainUrl}}/browse/"
+        "columnValue": "www.${{atlassianDomain}}.atlassian.net/browse/"
       }
     },
     {
