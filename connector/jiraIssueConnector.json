@@ -1,208 +1,214 @@
 {
-  "$id": "jira_jiraIssuesConnector",
-  "$schema": "https://schema.yext.com/config/km/connector/v3",
-  "displayName": "Jira Issues Connector",
-  "entityType": "jira_Issue",
-  "source": {
-    "sourceConfig": {
-      "nativeSourceConfig": {
-        "source": "jira",
-        "operation": "fetchIssuesSpecifyFields",
-        "inputs": {
-          "atlassianDomain": "${{atlassianDomain}}",
-          "boardId": "${{boardId}}",
-          "fields": "id,key,assignee,reporter,status,labels,comment,summary",
-          "password": "${{password}}",
-          "username": "${{username}}"
+    "$id": "jira_jiraIssuesConnector",
+    "$schema": "https://schema.yext.com/config/km/connector/v4",
+    "displayName": "Jira Issues Connector",
+    "entityTypes": [
+        "jira_Issue"
+    ],
+    "source": {
+        "sourceConfig": {
+            "nativeSourceConfig": {
+                "source": "jira",
+                "operation": "fetchIssuesSpecifyFields",
+                "inputs": {
+                    "atlassianDomain": "${{atlassianDomain}}",
+                    "boardId": "${{boardId}}",
+                    "fields": "id,key,assignee,reporter,status,labels,comment,summary",
+                    "password": "${{password}}",
+                    "username": "${{username}}"
+                }
+            }
+        },
+        "selectors": [
+            {
+                "type": "JSON",
+                "header": "id",
+                "path": "id"
+            },
+            {
+                "type": "JSON",
+                "header": "key",
+                "path": "key"
+            },
+            {
+                "type": "JSON",
+                "header": "Assignee Email",
+                "path": "fields.assignee.emailAddress"
+            },
+            {
+                "type": "JSON",
+                "header": "Assignee Name",
+                "path": "fields.assignee.displayName"
+            },
+            {
+                "type": "JSON",
+                "header": "Reporter Name",
+                "path": "fields.reporter.displayName"
+            },
+            {
+                "type": "JSON",
+                "header": "Reporter Email",
+                "path": "fields.reporter.emailAddress"
+            },
+            {
+                "type": "JSON",
+                "header": "Status",
+                "path": "fields.status.statusCategory.name"
+            },
+            {
+                "type": "JSON",
+                "header": "Issue Summary",
+                "path": "fields.summary"
+            },
+            {
+                "type": "JSON",
+                "header": "Labels",
+                "path": "fields.labels"
+            },
+            {
+                "type": "JSON",
+                "header": "Commentor",
+                "path": "fields.comment"
+            },
+            {
+                "type": "JSON",
+                "header": "Commentor Email",
+                "path": "fields.comment"
+            },
+            {
+                "type": "JSON",
+                "header": "Comment",
+                "path": "fields.comment"
+            }
+        ]
+    },
+    "transforms": [
+        {
+            "addColumn": {
+                "newColumnHeader": "Jira Domain",
+                "columnValue": "www.${{atlassianDomain}}.atlassian.net/browse/"
+            }
+        },
+        {
+            "mergeColumns": {
+                "inputHeaders": [
+                    "Jira Domain",
+                    "key"
+                ],
+                "newColumnHeader": "Issue URL",
+                "delimiter": ""
+            }
+        },
+        {
+            "function": {
+                "inputHeaders": {
+                    "headers": [
+                        "Commentor"
+                    ]
+                },
+                "plugin": "jira_comment_formatter",
+                "function": "extractCommentor"
+            }
+        },
+        {
+            "function": {
+                "inputHeaders": {
+                    "headers": [
+                        "Commentor Email"
+                    ]
+                },
+                "plugin": "jira_comment_formatter",
+                "function": "extractEmail"
+            }
+        },
+        {
+            "function": {
+                "inputHeaders": {
+                    "headers": [
+                        "Comment"
+                    ]
+                },
+                "plugin": "jira_comment_formatter",
+                "function": "extractComment"
+            }
         }
-      }
-    },
-    "selectors": [
-      {
-        "type": "JSON",
-        "header": "id",
-        "path": "id"
-      },
-      {
-        "type": "JSON",
-        "header": "key",
-        "path": "key"
-      },
-      {
-        "type": "JSON",
-        "header": "Assignee Email",
-        "path": "fields.assignee.emailAddress"
-      },
-      {
-        "type": "JSON",
-        "header": "Assignee Name",
-        "path": "fields.assignee.displayName"
-      },
-      {
-        "type": "JSON",
-        "header": "Reporter Name",
-        "path": "fields.reporter.displayName"
-      },
-      {
-        "type": "JSON",
-        "header": "Reporter Email",
-        "path": "fields.reporter.emailAddress"
-      },
-      {
-        "type": "JSON",
-        "header": "Status",
-        "path": "fields.status.statusCategory.name"
-      },
-      {
-        "type": "JSON",
-        "header": "Issue Summary",
-        "path": "fields.summary"
-      },
-      {
-        "type": "JSON",
-        "header": "Labels",
-        "path": "fields.labels"
-      },
-      {
-        "type": "JSON",
-        "header": "Commentor",
-        "path": "fields.comment"
-      },
-      {
-        "type": "JSON",
-        "header": "Commentor Email",
-        "path": "fields.comment"
-      },
-      {
-        "type": "JSON",
-        "header": "Comment",
-        "path": "fields.comment"
-      }
-    ]
-  },
-  "transforms": [
-    {
-      "addColumn": {
-        "newColumnHeader": "Jira Domain",
-        "columnValue": "www.${{atlassianDomain}}.atlassian.net/browse/"
-      }
-    },
-    {
-      "mergeColumns": {
-        "inputHeaders": [
-          "Jira Domain",
-          "key"
-        ],
-        "newColumnHeader": "Issue URL",
-        "delimiter": ""
-      }
-    },
-    {
-      "function": {
-        "inputHeaders": {
-          "headers": [
-            "Commentor"
-          ]
+    ],
+    "mappings": [
+        {
+            "field": "jira_status",
+            "header": "Status",
+            "subfieldPath": []
         },
-        "plugin": "jira_comment_formatter",
-        "function": "extractCommentor"
-      }
-    },
-    {
-      "function": {
-        "inputHeaders": {
-          "headers": [
-            "Commentor Email"
-          ]
+        {
+            "field": "jira_reporterEmail",
+            "header": "Reporter Email",
+            "subfieldPath": []
         },
-        "plugin": "jira_comment_formatter",
-        "function": "extractEmail"
-      }
-    },
-    {
-      "function": {
-        "inputHeaders": {
-          "headers": [
-            "Comment"
-          ]
+        {
+            "field": "jira_comments",
+            "header": "Comment",
+            "subfieldPath": [
+                {
+                    "name": "comment"
+                }
+            ]
         },
-        "plugin": "jira_comment_formatter",
-        "function": "extractComment"
-      }
+        {
+            "field": "jira_assigneeName",
+            "header": "Assignee Name",
+            "subfieldPath": []
+        },
+        {
+            "field": "name",
+            "header": "Issue Summary",
+            "subfieldPath": []
+        },
+        {
+            "field": "jira_comments",
+            "header": "Commentor",
+            "subfieldPath": [
+                {
+                    "name": "commentor"
+                }
+            ]
+        },
+        {
+            "field": "landingPageUrl",
+            "header": "Issue URL",
+            "subfieldPath": []
+        },
+        {
+            "field": "jira_reporterName",
+            "header": "Reporter Name",
+            "subfieldPath": []
+        },
+        {
+            "field": "jira_assigneeEmail",
+            "header": "Assignee Email",
+            "subfieldPath": []
+        },
+        {
+            "field": "labels",
+            "header": "Labels",
+            "subfieldPath": []
+        },
+        {
+            "field": "entityId",
+            "header": "id",
+            "subfieldPath": []
+        },
+        {
+            "field": "jira_comments",
+            "header": "Commentor Email",
+            "subfieldPath": [
+                {
+                    "name": "commentorEmail"
+                }
+            ]
+        }
+    ],
+    "comprehensiveModeConfig": {
+        "comprehensiveSet": "ENTITIES_CREATED_BY_THIS_CONNECTOR",
+        "actionOnMissingEntities": "DELETE"
     }
-  ],
-  "mappings": [
-    {
-      "field": "jira_status",
-      "header": "Status",
-      "subfieldPath": []
-    },
-    {
-      "field": "jira_reporterEmail",
-      "header": "Reporter Email",
-      "subfieldPath": []
-    },
-    {
-      "field": "jira_comments",
-      "header": "Comment",
-      "subfieldPath": [
-        {
-          "name": "comment"
-        }
-      ]
-    },
-    {
-      "field": "jira_assigneeName",
-      "header": "Assignee Name",
-      "subfieldPath": []
-    },
-    {
-      "field": "name",
-      "header": "Issue Summary",
-      "subfieldPath": []
-    },
-    {
-      "field": "jira_comments",
-      "header": "Commentor",
-      "subfieldPath": [
-        {
-          "name": "commentor"
-        }
-      ]
-    },
-    {
-      "field": "landingPageUrl",
-      "header": "Issue URL",
-      "subfieldPath": []
-    },
-    {
-      "field": "jira_reporterName",
-      "header": "Reporter Name",
-      "subfieldPath": []
-    },
-    {
-      "field": "jira_assigneeEmail",
-      "header": "Assignee Email",
-      "subfieldPath": []
-    },
-    {
-      "field": "labels",
-      "header": "Labels",
-      "subfieldPath": []
-    },
-    {
-      "field": "entityId",
-      "header": "id",
-      "subfieldPath": []
-    },
-    {
-      "field": "jira_comments",
-      "header": "Commentor Email",
-      "subfieldPath": [
-        {
-          "name": "commentorEmail"
-        }
-      ]
-    }
-  ]
 }

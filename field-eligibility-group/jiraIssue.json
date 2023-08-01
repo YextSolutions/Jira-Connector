@@ -1,19 +1,19 @@
 {
-  "$id": "jira_Issue",
-  "$schema": "https://schema.yext.com/config/km/field-eligibility-group/v1",
-  "name": "Jira Issue",
-  "entityType": "jira_Issue",
-  "fields": [
-    "body",
-    "jira_assigneeEmail",
-    "jira_assigneeName",
-    "jira_engineeringTeam",
-    "jira_reporterEmail",
-    "jira_reporterName",
-    "jira_status",
-    "jira_comments",
-    "jira_issueKey",
-    "landingPageUrl"
-  ],
-  "required": []
+    "$id": "jira_Issue",
+    "$schema": "https://schema.yext.com/config/km/field-eligibility-group/v1",
+    "name": "Jira Issue",
+    "entityType": "jira_Issue",
+    "fields": [
+        "bodyV2",
+        "jira_assigneeEmail",
+        "jira_assigneeName",
+        "jira_engineeringTeam",
+        "jira_reporterEmail",
+        "jira_reporterName",
+        "jira_status",
+        "jira_comments",
+        "jira_issueKey",
+        "landingPageUrl"
+    ],
+    "required": []
 }
