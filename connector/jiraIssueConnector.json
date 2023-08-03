@@ -145,14 +145,18 @@
             "subfieldPath": []
         },
         {
-            "field": "jira_comments",
-            "header": "Comment",
-            "subfieldPath": [
-                {
-                    "name": "comment"
-                }
-            ]
+      "header": "Comment",
+      "field": "jira_comments",
+      "subfieldPath": [
+        {
+          "name": "comment"
         },
+        {
+          "name": "markdown"
+        }
+      ],
+      "clearValueIfBlank": false
+    },
         {
             "field": "jira_assigneeName",
             "header": "Assignee Name",
